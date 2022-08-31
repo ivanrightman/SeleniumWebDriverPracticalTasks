@@ -36,5 +36,4 @@ public class PasteTests extends BaseTest {
         assertTrue(areElementsPresent(By.cssSelector("ol.bash")));
         assertEquals(app.pasteMainPage().getTextFromCreatedPaste(), paste.getCodeToPaste());
     }
-
 }
