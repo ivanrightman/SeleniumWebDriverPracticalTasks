@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="GoogleSuite">
+    <test name="runAllGoogleTests" parallel="classes" thread-count="2">
+        <classes>
+            <class name="com.learning.selenium.tests.GoogleCloudTests"></class>
+        </classes>
+    </test>
+</suite>

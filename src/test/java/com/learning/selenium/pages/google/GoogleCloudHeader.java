@@ -1,5 +1,6 @@
-package com.learning.selenium.pages;
+package com.learning.selenium.pages.google;
 
+import com.learning.selenium.pages.BasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

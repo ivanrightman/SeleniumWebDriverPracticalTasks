@@ -3,6 +3,7 @@ package com.learning.selenium.tests;
 import com.learning.selenium.app.Application;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -16,7 +17,7 @@ public class BaseTest {
 
     @BeforeSuite
     public void start() {
-        app = new Application();
+        app = new Application(BrowserType.CHROME, "http://localhost:4444/wd/hub");
     }
 
     @AfterSuite (enabled = true)
