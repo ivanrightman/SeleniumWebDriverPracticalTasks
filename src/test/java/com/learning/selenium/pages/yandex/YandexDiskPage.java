@@ -10,6 +10,22 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class YandexDiskPage extends BasePage {
+
+  private static final String DISKPAGE_URL = "https://disk.yandex.com/";
+  @FindBy(xpath = "//a[contains(@class, 'button_login')]")
+  private WebElement signInButton;
+  @FindBy(xpath = "//span[@id='/disk']")
+  private WebElement foldersNav;
+  @FindBy(xpath = "//div[@class='listing__items']//div[contains(@class, 'listing-item_type')]")
+  protected List<WebElement> foldersElements;
+  @FindBy(xpath = "//div[contains(@class, 'listing-item_type_dir js-prevent-drag')]")
+  private WebElement trash;
+  private String elementToTrashLocator = "//div[@class='listing__items']//div[contains(@aria-label, '%s')]";
+  @FindBy(xpath = "//div[contains(@class, 'popup__actions-menu')]//div[@role='group']")
+  private List<WebElement> contextMenu;
+  @FindBy(css = "[value=delete]")
+  private WebElement contextMenuDelete;
+
   public YandexDiskPage(WebDriver driver, Actions actions) {
     super(driver, actions);
   }
@@ -18,28 +34,6 @@ public class YandexDiskPage extends BasePage {
   public void open() {
     driver.get(DISKPAGE_URL);
   }
-
-  private static final String DISKPAGE_URL = "https://disk.yandex.com/";
-
-  @FindBy(xpath = "//a[contains(@class, 'button_login')]")
-  private WebElement signInButton;
-
-  @FindBy(xpath = "//span[@id='/disk']")
-  private WebElement foldersNav;
-
-  @FindBy(xpath = "//div[@class='listing__items']//div[contains(@class, 'listing-item_type')]")
-  protected List<WebElement> foldersElements;
-
-  @FindBy(xpath = "//div[contains(@class, 'listing-item_type_dir js-prevent-drag')]")
-  private WebElement trash;
-
-  private String elementToTrashLocator = "//div[@class='listing__items']//div[contains(@aria-label, '%s')]";
-
-  @FindBy(xpath = "//div[contains(@class, 'popup__actions-menu')]//div[@role='group']")
-  private List<WebElement> contextMenu;
-
-  @FindBy(css = "[value=delete]")
-  private WebElement contextMenuDelete;
 
   public void clickSignInButton() {
     click(signInButton);
@@ -68,7 +62,7 @@ public class YandexDiskPage extends BasePage {
     highlightAndClickOnTrashIcon();
   }
 
-  private void selectAllInFoldersWithActions() {
+  private void selectAllInFoldersWithActionsMac() {
     for (WebElement el : foldersElements) {
       if (!el.equals(trash)) {
         actions
@@ -80,8 +74,20 @@ public class YandexDiskPage extends BasePage {
     }
   }
 
+  private void selectAllInFoldersWithActionsWin() {
+    for (WebElement el : foldersElements) {
+      if (!el.equals(trash)) {
+        actions
+            .moveToElement(el)
+            .keyDown(Keys.CONTROL)
+            .click()
+            .perform();
+      }
+    }
+  }
+
   public void selectAllAndDeleteWithActions() {
-    selectAllInFoldersWithActions();
+    selectAllInFoldersWithActionsMac();
     actions
         .contextClick()
         .perform();

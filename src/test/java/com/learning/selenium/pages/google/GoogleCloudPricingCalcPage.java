@@ -13,26 +13,14 @@ import java.util.List;
 
 public class GoogleCloudPricingCalcPage extends BasePage {
 
-    public GoogleCloudPricingCalcPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
-
-    @Override
-    public void open() {
-        driver.get("https://cloud.google.com/products/calculator");
-    }
-
     private final By outerIframeLocator = By.xpath("//iframe[starts-with(@src, '/products/calculator/')]");
     private final By innerIframeLocator = By.cssSelector("[id=myFrame]");
-
     @FindBy(css = "div[title='Compute Engine']")
     private WebElement computeEngine;
     private final String inputFieldBaseLocator = "//label[contains(.,'%s')]/../input";
     private final String selectFieldBaseLocator = "//md-select[@ng-model='%s']";
     private final String selectOptionBaseLocator = ".//md-option//div[contains(., '%s')]";
     private final String selectOptionBaseLocatorSpecific = "//md-option[@*[contains(.,'%s')]]//div[contains(., '%s')]";
-
     private final By numberOfInstancesField = LocatorHelper.getLocatorFromOneValue(inputFieldBaseLocator, "Number of instances");
     private final By whatAreInstancesField = LocatorHelper.getLocatorFromOneValue(inputFieldBaseLocator, "What are these instances for?");
     private final String operatingSystemUnique = "listingCtrl.computeServer.os";
@@ -43,7 +31,6 @@ public class GoogleCloudPricingCalcPage extends BasePage {
     private final By series = LocatorHelper.getLocatorFromOneValue(selectFieldBaseLocator, seriesUnique);
     private final String machineTypeUnique = "listingCtrl.computeServer.instance";
     private final By machineType = LocatorHelper.getLocatorFromOneValue(selectFieldBaseLocator, machineTypeUnique);
-
     @FindBy(xpath = "//*[contains(@aria-label, 'Add GPUs')]")
     private WebElement addGpus;
     private final String gpuTypeUnique = "listingCtrl.computeServer.gpuType";
@@ -57,15 +44,22 @@ public class GoogleCloudPricingCalcPage extends BasePage {
     private final By dataCenterLocation = LocatorHelper.getLocatorFromOneValue(selectFieldBaseLocator, dataCenterLocationUnique);
     private final String commitedUsageUnique = "listingCtrl.computeServer.cud";
     private final By commitedUsage = LocatorHelper.getLocatorFromOneValue(selectFieldBaseLocator, commitedUsageUnique);
-
     @FindBy(xpath = "//*[contains(@aria-label, 'Add to Estimate')]")
     private WebElement addToEstimateButton;
     private By estimateSection = By.cssSelector(".cartitem");
     private By estimateSectionRows = By.cssSelector(".md-1-line");
 
+    public GoogleCloudPricingCalcPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
+
+    @Override
+    public void open() {
+        driver.get("https://cloud.google.com/products/calculator");
+    }
+
     public GoogleCloudPricingCalcPage fillComputeEngine(ComputeEngine data) {
-        //waitUntilFrameAndSwitch(outerIframeLocator);
-        //waitUntilFrameAndSwitch(innerIframeLocator);
         fillInputField(numberOfInstancesField, data.getNumberOfInstances());
         fillInputField(whatAreInstancesField, data.getWhatAreInstances());
         selectOption(operatingSystem, selectOptionBaseLocator, data.getOperatingSystem());

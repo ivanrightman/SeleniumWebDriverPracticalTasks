@@ -6,6 +6,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class YandexLoginPage extends BasePage {
+
+  private static final String LOGINPAGE_URL = "https://passport.yandex.com/";
+  @FindBy(css = "[name=login]")
+  private WebElement emailField;
+  @FindBy(css = "[type=password]")
+  private WebElement passwordField;
+  @FindBy(css = "[type=submit]")
+  private WebElement loginButton;
+  @FindBy(xpath = "//div[contains(@class, 'PSHeader-User')]//img[contains(@class, 'user-pic__image')]")
+  private WebElement header;
+
   public YandexLoginPage(WebDriver driver) {
     super(driver);
   }
@@ -14,20 +25,6 @@ public class YandexLoginPage extends BasePage {
   public void open() {
     driver.get(LOGINPAGE_URL);
   }
-
-  private static final String LOGINPAGE_URL = "https://passport.yandex.com/";
-
-  @FindBy(css = "[name=login]")
-  private WebElement emailField;
-
-  @FindBy(css = "[type=password]")
-  private WebElement passwordField;
-
-  @FindBy(css = "[type=submit]")
-  private WebElement loginButton;
-
-  @FindBy(xpath = "//div[contains(@class, 'PSHeader-User')]//img[contains(@class, 'user-pic__image')]")
-  private WebElement header;
 
   public void clickLoginButton() {
     click(loginButton);

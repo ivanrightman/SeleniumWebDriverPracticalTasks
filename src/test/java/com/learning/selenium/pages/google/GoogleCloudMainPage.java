@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 
 public class GoogleCloudMainPage extends BasePage {
 
+    private static final String MAINPAGE_URL = "https://cloud.google.com/";
+
     public GoogleCloudMainPage(WebDriver driver) {
         super(driver);
     }
@@ -13,6 +15,4 @@ public class GoogleCloudMainPage extends BasePage {
     public void open() {
         driver.get(MAINPAGE_URL);
     }
-
-    private static final String MAINPAGE_URL = "https://cloud.google.com/";
 }
