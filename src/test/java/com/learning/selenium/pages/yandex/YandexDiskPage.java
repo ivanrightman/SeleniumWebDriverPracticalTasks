@@ -1,6 +1,7 @@
 package com.learning.selenium.pages.yandex;
 
 import com.learning.selenium.pages.BasePage;
+import com.learning.selenium.utils.Log;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -44,6 +45,7 @@ public class YandexDiskPage extends BasePage {
   }
 
   public void dragAndDropIntoTrash(String fileName) {
+    Log.info(String.format("Drag and drop %s into trash", fileName));
     //WebElement victim = getElement(getLocatorFromOneValue(elementToTrashLocator, fileName));
     //actions
         //.moveToElement(victim)
@@ -63,6 +65,7 @@ public class YandexDiskPage extends BasePage {
   }
 
   private void selectAllInFoldersWithActionsMac() {
+    Log.info(String.format("Selecting all files in folders"));
     for (WebElement el : foldersElements) {
       if (!el.equals(trash)) {
         actions
@@ -75,6 +78,7 @@ public class YandexDiskPage extends BasePage {
   }
 
   private void selectAllInFoldersWithActionsWin() {
+    Log.info(String.format("Selecting all files in folders"));
     for (WebElement el : foldersElements) {
       if (!el.equals(trash)) {
         actions
@@ -87,6 +91,7 @@ public class YandexDiskPage extends BasePage {
   }
 
   public void selectAllAndDeleteWithActions() {
+    Log.info(String.format("Selecting all files in folders and delete"));
     selectAllInFoldersWithActionsMac();
     actions
         .contextClick()

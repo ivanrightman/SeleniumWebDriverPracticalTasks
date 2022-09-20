@@ -1,7 +1,11 @@
 package com.learning.selenium.tests;
 
 import com.learning.selenium.app.Application;
+import com.learning.selenium.utils.Log;
+import com.learning.selenium.utils.TestListener;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,6 +18,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,22 +26,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Listeners({TestListener.class})
 public class BaseTest {
 
+    public static TakesScreenshot takesScreenshot;
     public WebDriver driver;
     public Actions actions;
     public Application app;
+    public String envPropertyName = "local";
 
     @BeforeSuite
     public void start() {
-        String browser = BrowserType.CHROME;
-        String seleniumServer = "http://localhost:4444/wd/hub";
-        if ("".equals(seleniumServer)) {
+        String browser = System.getProperty("browser", BrowserType.CHROME);
+        String environment = System.getProperty("environment", envPropertyName);
+        if ("".equals(environment) || "qa".equals(environment) || envPropertyName.equals(environment)) {
             if (browser.equals(BrowserType.FIREFOX)){
+                WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
             } else if (browser.equals(BrowserType.CHROME)) {
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
             } else if (browser.equals(BrowserType.EDGE)) {
+                WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
             }
         } else {
@@ -45,15 +56,18 @@ public class BaseTest {
                 chromeOptions.setCapability(CapabilityType.BROWSER_NAME, browser);
                 chromeOptions.setCapability(CapabilityType.PLATFORM_NAME, "MAC");
                 try {
-                    driver = new RemoteWebDriver(new URL(seleniumServer), chromeOptions);
+                    WebDriverManager.chromedriver().setup();
+                    driver = new RemoteWebDriver(new URL(environment), chromeOptions);
                 } catch (MalformedURLException ex) {
                     ex.printStackTrace();
                 }
             } else {
+                Log.debug("Unsupported browserName: " + browser);
                 throw new IllegalArgumentException("Unsupported browserName: " + browser);
             }
         }
         app = new Application(driver, actions);
+        takesScreenshot = (TakesScreenshot) driver;
     }
 
     @AfterSuite (enabled = true)

@@ -2,7 +2,8 @@ package com.learning.selenium.pages.google;
 
 import com.learning.selenium.model.ComputeEngine;
 import com.learning.selenium.pages.BasePage;
-import com.learning.selenium.pages.LocatorHelper;
+import com.learning.selenium.utils.LocatorHelper;
+import com.learning.selenium.utils.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -60,6 +61,7 @@ public class GoogleCloudPricingCalcPage extends BasePage {
     }
 
     public GoogleCloudPricingCalcPage fillComputeEngine(ComputeEngine data) {
+        Log.info(String.format("Filling Compute Engine"));
         fillInputField(numberOfInstancesField, data.getNumberOfInstances());
         fillInputField(whatAreInstancesField, data.getWhatAreInstances());
         selectOption(operatingSystem, selectOptionBaseLocator, data.getOperatingSystem());
@@ -76,11 +78,13 @@ public class GoogleCloudPricingCalcPage extends BasePage {
     }
 
     public GoogleCloudPricingCalcPage addToEstimate() {
+        Log.info(String.format("Adding to estimate"));
         addToEstimateButton.click();
         return this;
     }
 
     public GoogleCloudPricingCalcPage activateComputeEngine() {
+        Log.info(String.format("Clicking on Compute Engine"));
         waitUntilFrameAndSwitch(outerIframeLocator);
         waitUntilFrameAndSwitch(innerIframeLocator);
         computeEngine.click();

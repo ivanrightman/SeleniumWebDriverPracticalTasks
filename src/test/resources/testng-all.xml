@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="AllSuites">
+<suite name="Regression">
     <suite-files>
         <suite-file path="testng-google.xml"/>
         <suite-file path="testng-yandex.xml"/>

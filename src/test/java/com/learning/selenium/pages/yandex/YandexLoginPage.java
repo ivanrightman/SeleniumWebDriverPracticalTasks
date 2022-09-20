@@ -1,6 +1,7 @@
 package com.learning.selenium.pages.yandex;
 
 import com.learning.selenium.pages.BasePage;
+import com.learning.selenium.utils.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,14 +24,17 @@ public class YandexLoginPage extends BasePage {
 
   @Override
   public void open() {
+    Log.info(String.format("Open %s page", LOGINPAGE_URL));
     driver.get(LOGINPAGE_URL);
   }
 
   public void clickLoginButton() {
+    Log.info(String.format("Click login button"));
     click(loginButton);
   }
 
   public void logIn() {
+    Log.info(String.format("Perform login"));
     fillInputField(emailField, "", null);
     clickLoginButton();
     fillInputField(passwordField, "", null);

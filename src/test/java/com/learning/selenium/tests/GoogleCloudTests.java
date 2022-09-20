@@ -1,6 +1,7 @@
 package com.learning.selenium.tests;
 
 import com.learning.selenium.model.ComputeEngine;
+import com.learning.selenium.testdata.ComputeEngineCreator;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -13,17 +14,7 @@ public class GoogleCloudTests extends BaseTest {
 
     @Test
     public void computeEngineTest() {
-        ComputeEngine computeEngine = new ComputeEngine()
-                .withNumberOfInstances("4")
-                .withOperatingSystem("Free: Debian, CentOS, CoreOS, Ubuntu or BYOL")
-                .withProvisioningModel("Regular")
-                .withSeries("N1")
-                .withMachineType("n1-standard-8")
-                .withGpuType("NVIDIA Tesla V100")
-                .withNumberOfGpus("1")
-                .withLocalSsd("2x375")
-                .withDataCenterLocation("Frankfurt")
-                .withCommitedUsage("1 Year");
+        ComputeEngine computeEngine = ComputeEngineCreator.computeEngineFromProperty(envPropertyName);
         String search = "Google Cloud Pricing Calculator";
         app.googleCloudMainPage().open();
         app.googleCloudHeader().search(search);

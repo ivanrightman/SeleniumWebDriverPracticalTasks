@@ -1,10 +1,12 @@
 package com.learning.selenium.pages.google;
 
 import com.learning.selenium.pages.BasePage;
-import com.learning.selenium.pages.LocatorHelper;
+import com.learning.selenium.utils.LocatorHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static com.learning.selenium.utils.Log.logger;
 
 
 public class GoogleCloudSearchResultsPage extends BasePage {
@@ -24,6 +26,7 @@ public class GoogleCloudSearchResultsPage extends BasePage {
     }
 
     public void searchResultClick(String text) {
+        logger.info(String.format("Click on %s", text));
         waitUntilElementClickable(searchResultsBlock);
         WebElement searchFound = searchResultsList.findElement(LocatorHelper.getLocatorFromOneValue(searchBaseLocator, text));
         click(searchFound);
