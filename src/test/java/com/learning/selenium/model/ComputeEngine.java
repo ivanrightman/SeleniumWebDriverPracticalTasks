@@ -15,6 +15,7 @@ public class ComputeEngine {
     private String localSsd;
     private String dataCenterLocation;
     private String commitedUsage;
+    private String price;
 
     public String getNumberOfInstances() {
         return numberOfInstances;
@@ -115,33 +116,43 @@ public class ComputeEngine {
         return this;
     }
 
+    public ComputeEngine withPrice(String price) {
+        this.price = price;
+        return this;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ComputeEngine that = (ComputeEngine) o;
-        return Objects.equals(numberOfInstances, that.numberOfInstances) && Objects.equals(whatAreInstances, that.whatAreInstances) && Objects.equals(operatingSystem, that.operatingSystem) && Objects.equals(machineType, that.machineType) && Objects.equals(series, that.series) && Objects.equals(machineType, that.machineType) && Objects.equals(gpuType, that.gpuType) && Objects.equals(numberOfGpus, that.numberOfGpus) && Objects.equals(localSsd, that.localSsd) && Objects.equals(dataCenterLocation, that.dataCenterLocation) && Objects.equals(commitedUsage, that.commitedUsage);
+        return Objects.equals(numberOfInstances, that.numberOfInstances) && Objects.equals(whatAreInstances, that.whatAreInstances) && Objects.equals(provisioningModel, that.provisioningModel) && Objects.equals(machineType, that.machineType) && Objects.equals(operatingSystem, that.operatingSystem) && Objects.equals(series, that.series) && Objects.equals(gpuType, that.gpuType) && Objects.equals(numberOfGpus, that.numberOfGpus) && Objects.equals(localSsd, that.localSsd) && Objects.equals(dataCenterLocation, that.dataCenterLocation) && Objects.equals(commitedUsage, that.commitedUsage) && Objects.equals(price, that.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numberOfInstances, whatAreInstances, operatingSystem, machineType, series, machineType, gpuType, numberOfGpus, localSsd, dataCenterLocation, commitedUsage);
+        return Objects.hash(numberOfInstances, whatAreInstances, provisioningModel, machineType, operatingSystem, series, gpuType, numberOfGpus, localSsd, dataCenterLocation, commitedUsage, price);
     }
 
     @Override
     public String toString() {
         return "ComputeEngine{" +
-                "numberOfInstances='" + numberOfInstances + '\'' +
-                ", whatAreInstances='" + whatAreInstances + '\'' +
-                ", operatingSystem='" + operatingSystem + '\'' +
-                ", machineClass='" + machineType + '\'' +
-                ", series='" + series + '\'' +
-                ", machineType='" + machineType + '\'' +
-                ", gpuType='" + gpuType + '\'' +
-                ", numberOfGpus='" + numberOfGpus + '\'' +
-                ", localSsd='" + localSsd + '\'' +
-                ", dataCenterLocation='" + dataCenterLocation + '\'' +
-                ", commitedUsage='" + commitedUsage + '\'' +
-                '}';
+            "numberOfInstances='" + numberOfInstances + '\'' +
+            ", whatAreInstances='" + whatAreInstances + '\'' +
+            ", provisioningModel='" + provisioningModel + '\'' +
+            ", machineType='" + machineType + '\'' +
+            ", operatingSystem='" + operatingSystem + '\'' +
+            ", series='" + series + '\'' +
+            ", gpuType='" + gpuType + '\'' +
+            ", numberOfGpus='" + numberOfGpus + '\'' +
+            ", localSsd='" + localSsd + '\'' +
+            ", dataCenterLocation='" + dataCenterLocation + '\'' +
+            ", commitedUsage='" + commitedUsage + '\'' +
+            ", price='" + price + '\'' +
+            '}';
     }
 }

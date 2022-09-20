@@ -24,7 +24,7 @@ public class GoogleCloudTests extends BaseTest {
         app.googleCloudPricingCalcPage().addToEstimate();
         List<WebElement> currentEstimateRows = app.googleCloudPricingCalcPage().getEstimateRows();
         Map<String, String> currentEstimateRowsMap = getKeyValuesFromWebElement(currentEstimateRows);
-        String expectedPrice = "1,288.70";
+        String expectedPrice = computeEngine.getPrice();
         assertTrue(currentEstimateRowsMap.get("Provisioning model").contains(computeEngine.getProvisioningModel()));
         assertTrue(currentEstimateRowsMap.get("Instance type").contains(computeEngine.getMachineType()));
         assertTrue(currentEstimateRowsMap.get("Region").contains(computeEngine.getDataCenterLocation()));

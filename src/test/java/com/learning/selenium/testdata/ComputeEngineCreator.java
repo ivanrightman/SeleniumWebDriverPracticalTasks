@@ -15,6 +15,7 @@ public class ComputeEngineCreator {
   private static String localSsd = "testdata.computeengine.localSsd";
   private static String dataCenterLocation = "testdata.computeengine.dataCenterLocation";
   private static String commitedUsage = "testdata.computeengine.commitedUsage";
+  private static String price = "testdata.computeengine.price";
 
   public static ComputeEngine computeEngineFromProperty(String propertyName) {
     TestDataReader.readProperty(propertyName);
@@ -28,7 +29,8 @@ public class ComputeEngineCreator {
         .withNumberOfGpus(TestDataReader.getFromProperty(numberOfGpus))
         .withLocalSsd(TestDataReader.getFromProperty(localSsd))
         .withDataCenterLocation(TestDataReader.getFromProperty(dataCenterLocation))
-        .withCommitedUsage(TestDataReader.getFromProperty(commitedUsage));
+        .withCommitedUsage(TestDataReader.getFromProperty(commitedUsage))
+        .withPrice(TestDataReader.getFromProperty(price));
   }
 
   public static ComputeEngine computeEngineObject() {
