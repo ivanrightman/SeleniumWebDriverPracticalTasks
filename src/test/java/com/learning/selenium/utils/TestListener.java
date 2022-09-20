@@ -16,41 +16,41 @@ public class TestListener implements ITestListener {
 
   @Override
   public void onTestStart(ITestResult result) {
-    Log.logger.info(String.format("%s test case started", result.getName()));
+    Log.info(String.format("%s test case started", result.getName()));
   }
 
   @Override
   public void onTestSuccess(ITestResult result) {
-    Log.logger.info(String.format("Test %s finished success ", result.getName()));
+    Log.info(String.format("Test %s finished success ", result.getName()));
   }
 
   @Override
   public void onTestFailure(ITestResult result) {
     saveScreenshot();
-    Log.logger.info(String.format("Test %s failed ", result.getName()));
-    Log.logger.debug(String.format("Test failed with %s", result.getThrowable()));
+    Log.info(String.format("Test %s failed ", result.getName()));
+    Log.debug(String.format("Test failed with %s", result.getThrowable()));
   }
 
   @Override
   public void onTestSkipped(ITestResult result) {
     saveScreenshot();
-    Log.logger.info(String.format("Test %s skipped ", result.getName()));
-    Log.logger.debug(String.format("Test %s skipped ", result.getThrowable()));
+    Log.info(String.format("Test %s skipped ", result.getName()));
+    Log.debug(String.format("Test %s skipped ", result.getThrowable()));
   }
 
   @Override
   public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-    Log.logger.info(String.format("Test %s failed but within success percentage ", result.getName()));
+    Log.info(String.format("Test %s failed but within success percentage ", result.getName()));
   }
 
   @Override
   public void onStart(ITestContext context) {
-    Log.logger.info(String.format("%s tests started", context.getName()));
+    Log.info(String.format("%s tests started", context.getName()));
   }
 
   @Override
   public void onFinish(ITestContext context) {
-    Log.logger.info(String.format("%s tests finished", context.getName()));
+    Log.info(String.format("%s tests finished", context.getName()));
   }
 
   public void saveScreenshot() {
@@ -58,12 +58,12 @@ public class TestListener implements ITestListener {
     File screenCapture = takesScreenshot.getScreenshotAs(OutputType.FILE);
     String filename = getCurrentTimeAsString() + ".png";
     try {
-      screenshotPath = new File(".//target/screenshots/" + filename);
+      screenshotPath = new File("./target/screenshots/" + filename);
       FileUtils.copyFile(screenCapture, screenshotPath);
     } catch (IOException e) {
-      Log.logger.error(String.format("Failed to save screen: %s", e.getLocalizedMessage()));
+      Log.error(String.format("Failed to save screen: %s", e.getLocalizedMessage()));
     }
-    Log.logger.info(String.format("Screen saved: <a href='%s' target='blank'>%s</a>",
+    Log.info(String.format("Screen saved: <a href='%s' target='blank'>%s</a>",
         screenshotPath.getAbsolutePath(), filename));
   }
 }
