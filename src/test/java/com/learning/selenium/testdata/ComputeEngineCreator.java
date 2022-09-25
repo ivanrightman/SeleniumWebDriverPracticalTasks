@@ -5,6 +5,7 @@ import com.learning.selenium.utils.TestDataReader;
 
 public class ComputeEngineCreator {
 
+  private static ComputeEngine computeEngine;
   private static String numberOfInstances = "testdata.computeengine.numberOfInstances";
   private static String provisioningModel = "testdata.computeengine.provisioningModel";
   private static String machineType = "testdata.computeengine.machineType";
@@ -17,9 +18,9 @@ public class ComputeEngineCreator {
   private static String commitedUsage = "testdata.computeengine.commitedUsage";
   private static String price = "testdata.computeengine.price";
 
-  public static ComputeEngine computeEngineFromProperty(String propertyName) {
+  public static ComputeEngine getComputeEngineInstanceFromProperty(String propertyName) {
     TestDataReader.readProperty(propertyName);
-    return new ComputeEngine()
+    computeEngine = new ComputeEngine()
         .withNumberOfInstances(TestDataReader.getFromProperty(numberOfInstances))
         .withProvisioningModel(TestDataReader.getFromProperty(provisioningModel))
         .withMachineType(TestDataReader.getFromProperty(machineType))
@@ -31,10 +32,11 @@ public class ComputeEngineCreator {
         .withDataCenterLocation(TestDataReader.getFromProperty(dataCenterLocation))
         .withCommitedUsage(TestDataReader.getFromProperty(commitedUsage))
         .withPrice(TestDataReader.getFromProperty(price));
+    return computeEngine;
   }
 
-  public static ComputeEngine computeEngineObject() {
-    return new ComputeEngine()
+  public static ComputeEngine getComputeEngineInstance() {
+    computeEngine = new ComputeEngine()
         .withNumberOfInstances("4")
         .withOperatingSystem("Free: Debian, CentOS, CoreOS, Ubuntu or BYOL")
         .withProvisioningModel("Regular")
@@ -45,6 +47,7 @@ public class ComputeEngineCreator {
         .withLocalSsd("2x375")
         .withDataCenterLocation("Frankfurt")
         .withCommitedUsage("1 Year");
+    return computeEngine;
   }
 
 }
