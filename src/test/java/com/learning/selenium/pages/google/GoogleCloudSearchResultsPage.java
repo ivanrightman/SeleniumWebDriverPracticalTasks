@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.learning.selenium.utils.Log.logger;
+import static com.learning.selenium.utils.Log.info;
 
 
 public class GoogleCloudSearchResultsPage extends BasePage {
@@ -26,7 +26,7 @@ public class GoogleCloudSearchResultsPage extends BasePage {
     }
 
     public void searchResultClick(String text) {
-        logger.info(String.format("Click on %s", text));
+        info(String.format("Click on %s", text));
         waitUntilElementClickable(searchResultsBlock);
         WebElement searchFound = searchResultsList.findElement(LocatorHelper.getLocatorFromOneValue(searchBaseLocator, text));
         click(searchFound);
