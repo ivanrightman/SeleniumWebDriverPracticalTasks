@@ -1,6 +1,7 @@
 package com.learning.selenium.pages.pastebin;
 
 import com.learning.selenium.pages.BasePage;
+import com.learning.selenium.utils.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,28 +32,34 @@ public class PasteMainPage extends BasePage {
 
     @Override
     public void open() {
+        Log.info(String.format("Open %s page", MAINPAGE_URL));
         driver.get(MAINPAGE_URL);
     }
 
     public void fillNewPaste(String input) {
+        Log.info(String.format("Filling new paste with input ", input));
         fillInputField(By.id("postform-text"), input);
     }
 
     public void selectSyntaxHighlighting(String text) {
+        Log.info(String.format("Select syntax highlighting"));
         syntaxHighlighting.click();
         click(By.xpath("//li[text()='" + text + "']"));
     }
 
     public void selectPasteExpiration(String text) {
+        Log.info(String.format("Select paste expiration "));
         pasteExpiration.click();
         click(By.xpath("//li[text()='" + text + "']"));
     }
 
     public void fillNameTitle(String input) {
+        Log.info(String.format("Filling name title "));
         fillInputField(nameTitle, input, null);
     }
 
     public void clickSubmit() {
+        Log.info(String.format("Click Submit "));
         submitButton.click();
         wait.until(ExpectedConditions.visibilityOf(blockAfterCreatingNewPaste));
     }

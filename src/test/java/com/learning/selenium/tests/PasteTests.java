@@ -1,6 +1,7 @@
 package com.learning.selenium.tests;
 
 import com.learning.selenium.model.Paste;
+import com.learning.selenium.testdata.PasteCreator;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -19,13 +20,7 @@ public class PasteTests extends BaseTest {
 
     @Test
     public void createNewPasteTest() {
-        Paste paste = new Paste()
-                .withCodeToPaste("git config --global user.name  \"New Sheriff in Town\"\n" +
-                        "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
-                        "git push origin master --force")
-                .withHighlighting("Bash")
-                .withExpiration("10 Minutes")
-                .withName("how to gain dominance among developers");
+        Paste paste = PasteCreator.pasteFromProperty(envPropertyName);
         app.pasteMainPage().open();
         app.pasteMainPage().fillNewPaste(paste.getCodeToPaste());
         app.pasteMainPage().selectSyntaxHighlighting(paste.getHighlighting());

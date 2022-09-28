@@ -1,6 +1,7 @@
 package com.learning.selenium.pages.google;
 
 import com.learning.selenium.pages.BasePage;
+import com.learning.selenium.utils.Log;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,6 +23,7 @@ public class GoogleCloudHeader extends BasePage {
     }
 
     public void search(String text) {
+        Log.info(String.format("Searching text ", text));
         fillInputField(searchButton, text, Keys.ENTER);
     }
 }

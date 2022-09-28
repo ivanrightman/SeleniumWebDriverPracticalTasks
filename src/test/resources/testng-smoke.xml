@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="AllSuites" parallel="classes" thread-count="2">
+    <test name="runAllGoogleTests">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="com.learning.selenium.tests.GoogleCloudTests"></class>
+        </classes>
+    </test>
+    <test name="runAllYandexTests">
+        <parameter name="browser" value="firefox" />
+        <classes>
+            <class name="com.learning.selenium.tests.YandexTests"></class>
+        </classes>
+    </test>
+</suite>

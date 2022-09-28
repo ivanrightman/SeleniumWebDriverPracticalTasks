@@ -1,4 +1,4 @@
-package com.learning.selenium.pages;
+package com.learning.selenium.utils;
 
 import org.openqa.selenium.By;
 
