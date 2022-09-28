@@ -1,29 +1,34 @@
 package com.learning.selenium.app;
 
-import com.learning.selenium.pages.*;
+import com.learning.selenium.pages.google.GoogleCloudHeader;
+import com.learning.selenium.pages.google.GoogleCloudMainPage;
+import com.learning.selenium.pages.google.GoogleCloudPricingCalcPage;
+import com.learning.selenium.pages.google.GoogleCloudSearchResultsPage;
+import com.learning.selenium.pages.pastebin.PasteMainPage;
+import com.learning.selenium.pages.yandex.YandexDiskPage;
+import com.learning.selenium.pages.yandex.YandexLoginPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 public class Application {
 
-    public WebDriver driver;
     private PasteMainPage pasteMainPage;
     private GoogleCloudMainPage googleCloudMainPage;
     private GoogleCloudHeader googleCloudHeader;
     private GoogleCloudSearchResultsPage googleCloudSearchResultsPage;
     private GoogleCloudPricingCalcPage googleCloudPricingCalcPage;
+    private YandexLoginPage yandexLoginPage;
+    private YandexDiskPage yandexDiskPage;
 
-    public Application() {
-        driver = new ChromeDriver();
+    public Application(WebDriver driver, Actions actions) {
         pasteMainPage = new PasteMainPage(driver);
         googleCloudMainPage = new GoogleCloudMainPage(driver);
         googleCloudHeader = new GoogleCloudHeader(driver);
         googleCloudSearchResultsPage = new GoogleCloudSearchResultsPage(driver);
         googleCloudPricingCalcPage = new GoogleCloudPricingCalcPage(driver);
-    }
-
-    public void stop() {
-        driver.quit();
+        yandexLoginPage = new YandexLoginPage(driver);
+        actions = new Actions(driver);
+        yandexDiskPage = new YandexDiskPage(driver, actions);
     }
 
     public PasteMainPage pasteMainPage() {
@@ -33,6 +38,7 @@ public class Application {
     public GoogleCloudMainPage googleCloudMainPage() {
         return googleCloudMainPage;
     }
+
     public GoogleCloudHeader googleCloudHeader() {
         return googleCloudHeader;
     }
@@ -43,5 +49,13 @@ public class Application {
 
     public GoogleCloudPricingCalcPage googleCloudPricingCalcPage() {
         return googleCloudPricingCalcPage;
+    }
+
+    public YandexLoginPage yandexLoginPage() {
+        return yandexLoginPage;
+    }
+
+    public YandexDiskPage yandexDiskPage() {
+        return yandexDiskPage;
     }
 }

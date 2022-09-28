@@ -1,6 +1,7 @@
 package com.learning.selenium.pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,11 +13,21 @@ public abstract class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected final int WAIT_TIMEOUT_SECONDS = 15;
+    protected Actions actions;
+    protected JavascriptExecutor jsExecutor;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         PageFactory.initElements(driver, this);
+    }
+
+    public BasePage(WebDriver driver, Actions actions) {
+        this.driver = driver;
+        wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
+        PageFactory.initElements(driver, this);
+        this.actions = actions;
+        this.jsExecutor = (JavascriptExecutor) driver;
     }
 
     protected abstract void open();
@@ -38,6 +49,11 @@ public abstract class BasePage {
     protected void click(By locator) {
         waitUntilElementClickable(getElement(locator));
         getElement(locator).click();
+    }
+
+    protected void click(WebElement element) {
+        waitUntilElementClickable(element);
+        element.click();
     }
 
     protected void fillInputField(By locator, String text) {
@@ -89,5 +105,17 @@ public abstract class BasePage {
 
     public void waitUntilFrameAndSwitch(By locator) {
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
+    }
+
+    public Object executeJavaScript(String jsCode, WebElement element) {
+        return jsExecutor.executeScript(jsCode, element);
+    }
+
+    public void highlightElementJs(WebElement element) {
+        executeJavaScript("arguments[0].style.backgroundColor='" + "yellow" + "'", element);
+    }
+
+    public void clickOnElementJs(WebElement element) {
+        executeJavaScript("arguments[0].click()", element);
     }
 }
