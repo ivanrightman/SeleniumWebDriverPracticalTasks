@@ -8,14 +8,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 
 public class FirefoxDriverFactory implements IWebDriverFactory {
-  @Override
-  public WebDriver createWebDriver() {
-    WebDriverManager.firefoxdriver().setup();
-    return new FirefoxDriver();
-  }
+    @Override
+    public WebDriver createWebDriver() {
+        WebDriverManager.firefoxdriver().setup();
+        return new FirefoxDriver();
+    }
 
-  @Override
-  public RemoteWebDriver createRemoteWebDriver(String environment, ChromeOptions chromeOptions) {
-    return null;
-  }
+    @Override
+    public RemoteWebDriver createRemoteWebDriver(String environment, ChromeOptions chromeOptions) {
+        return null;
+    }
 }

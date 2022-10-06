@@ -7,8 +7,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 
 public interface IWebDriverFactory {
-  WebDriver createWebDriver();
+    WebDriver createWebDriver();
 
-  RemoteWebDriver createRemoteWebDriver(String environment, ChromeOptions chromeOptions) throws MalformedURLException;
+    RemoteWebDriver createRemoteWebDriver(String environment, ChromeOptions chromeOptions) throws MalformedURLException;
 
 }

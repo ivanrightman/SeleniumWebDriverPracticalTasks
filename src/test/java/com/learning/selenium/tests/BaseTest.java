@@ -39,7 +39,7 @@ public class BaseTest {
         String browser = System.getProperty("browser", BrowserType.CHROME);
         String environment = System.getProperty("environment", envPropertyName);
         if ("".equals(environment) || "qa".equals(environment) || envPropertyName.equals(environment)) {
-            if (browser.equals(BrowserType.FIREFOX)){
+            if (browser.equals(BrowserType.FIREFOX)) {
                 IWebDriverFactory factory = new FirefoxDriverFactory();
                 driver = factory.createWebDriver();
             } else if (browser.equals(BrowserType.CHROME)) {
@@ -70,7 +70,7 @@ public class BaseTest {
         takesScreenshot = (TakesScreenshot) driver;
     }
 
-    @AfterSuite (enabled = true)
+    @AfterSuite(enabled = true)
     public void stop() {
         driver.quit();
     }
@@ -84,7 +84,7 @@ public class BaseTest {
     }
 
     public Map<String, String> getKeyValuesFromWebElement(List<WebElement> webElements) {
-        Map<String, String>  keyValues = new HashMap<>();
+        Map<String, String> keyValues = new HashMap<>();
         for (WebElement el : webElements) {
             String[] value = el.getText().split(":");
             if (value.length > 1) {

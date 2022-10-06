@@ -13,75 +13,75 @@ import java.util.Set;
 
 
 public class CustomDriverDecorator extends RemoteWebDriver implements WebDriver, TakesScreenshot {
-  protected WebDriver driver;
-  protected JavascriptExecutor jsExecutor;
+    protected WebDriver driver;
+    protected JavascriptExecutor jsExecutor;
 
-  public CustomDriverDecorator(WebDriver driver) {
-    this.driver = driver;
-  }
+    public CustomDriverDecorator(WebDriver driver) {
+        this.driver = driver;
+    }
 
-  public void get(String url) {
-    driver.get(url);
-  }
+    public void get(String url) {
+        driver.get(url);
+    }
 
-  public String getCurrentUrl() {
-    return driver.getCurrentUrl();
-  }
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
 
-  public String getTitle() {
-    return driver.getTitle();
-  }
+    public String getTitle() {
+        return driver.getTitle();
+    }
 
-  public List<WebElement> findElements(By by) {
-    return driver.findElements(by);
-  }
+    public List<WebElement> findElements(By by) {
+        return driver.findElements(by);
+    }
 
-  public WebElement findElement(By by) {
-    Reporter.log(String.format("Finding element: %s, current URL: '%s'", by.toString(), driver.getCurrentUrl()),
-        true);
-    return driver.findElement(by);
-  }
+    public WebElement findElement(By by) {
+        Reporter.log(String.format("Finding element: %s, current URL: '%s'", by.toString(), driver.getCurrentUrl()),
+                true);
+        return driver.findElement(by);
+    }
 
-  public String getPageSource() {
-    return driver.getPageSource();
-  }
+    public String getPageSource() {
+        return driver.getPageSource();
+    }
 
-  public void close() {
-    driver.close();
-  }
+    public void close() {
+        driver.close();
+    }
 
-  public void quit() {
-    System.out.println("Browser will be closed now...");
-    driver.quit();
-  }
+    public void quit() {
+        System.out.println("Browser will be closed now...");
+        driver.quit();
+    }
 
-  public Set<String> getWindowHandles() {
-    return driver.getWindowHandles();
-  }
+    public Set<String> getWindowHandles() {
+        return driver.getWindowHandles();
+    }
 
-  public String getWindowHandle() {
-    return driver.getWindowHandle();
-  }
+    public String getWindowHandle() {
+        return driver.getWindowHandle();
+    }
 
-  public TargetLocator switchTo() {
-    return driver.switchTo();
-  }
+    public TargetLocator switchTo() {
+        return driver.switchTo();
+    }
 
-  public Navigation navigate() {
-    return driver.navigate();
-  }
+    public Navigation navigate() {
+        return driver.navigate();
+    }
 
-  public Options manage() {
-    return driver.manage();
-  }
+    public Options manage() {
+        return driver.manage();
+    }
 
-  @Override
-  public Object executeScript(String script, Object... args) {
-    return jsExecutor.executeScript(script, args);
-  }
+    @Override
+    public Object executeScript(String script, Object... args) {
+        return jsExecutor.executeScript(script, args);
+    }
 
-  @Override
-  public Object executeAsyncScript(String script, Object... args) {
-    return null;
-  }
+    @Override
+    public Object executeAsyncScript(String script, Object... args) {
+        return null;
+    }
 }

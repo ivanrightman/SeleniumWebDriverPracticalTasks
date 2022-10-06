@@ -141,18 +141,18 @@ public class ComputeEngine {
     @Override
     public String toString() {
         return "ComputeEngine{" +
-            "numberOfInstances='" + numberOfInstances + '\'' +
-            ", whatAreInstances='" + whatAreInstances + '\'' +
-            ", provisioningModel='" + provisioningModel + '\'' +
-            ", machineType='" + machineType + '\'' +
-            ", operatingSystem='" + operatingSystem + '\'' +
-            ", series='" + series + '\'' +
-            ", gpuType='" + gpuType + '\'' +
-            ", numberOfGpus='" + numberOfGpus + '\'' +
-            ", localSsd='" + localSsd + '\'' +
-            ", dataCenterLocation='" + dataCenterLocation + '\'' +
-            ", commitedUsage='" + commitedUsage + '\'' +
-            ", price='" + price + '\'' +
-            '}';
+                "numberOfInstances='" + numberOfInstances + '\'' +
+                ", whatAreInstances='" + whatAreInstances + '\'' +
+                ", provisioningModel='" + provisioningModel + '\'' +
+                ", machineType='" + machineType + '\'' +
+                ", operatingSystem='" + operatingSystem + '\'' +
+                ", series='" + series + '\'' +
+                ", gpuType='" + gpuType + '\'' +
+                ", numberOfGpus='" + numberOfGpus + '\'' +
+                ", localSsd='" + localSsd + '\'' +
+                ", dataCenterLocation='" + dataCenterLocation + '\'' +
+                ", commitedUsage='" + commitedUsage + '\'' +
+                ", price='" + price + '\'' +
+                '}';
     }
 }

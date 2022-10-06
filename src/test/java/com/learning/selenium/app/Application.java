@@ -12,13 +12,13 @@ import org.openqa.selenium.interactions.Actions;
 
 public class Application {
 
-    private PasteMainPage pasteMainPage;
-    private GoogleCloudMainPage googleCloudMainPage;
-    private GoogleCloudHeader googleCloudHeader;
-    private GoogleCloudSearchResultsPage googleCloudSearchResultsPage;
-    private GoogleCloudPricingCalcPage googleCloudPricingCalcPage;
-    private YandexLoginPage yandexLoginPage;
-    private YandexDiskPage yandexDiskPage;
+    private final PasteMainPage pasteMainPage;
+    private final GoogleCloudMainPage googleCloudMainPage;
+    private final GoogleCloudHeader googleCloudHeader;
+    private final GoogleCloudSearchResultsPage googleCloudSearchResultsPage;
+    private final GoogleCloudPricingCalcPage googleCloudPricingCalcPage;
+    private final YandexLoginPage yandexLoginPage;
+    private final YandexDiskPage yandexDiskPage;
 
     public Application(WebDriver driver, Actions actions) {
         pasteMainPage = new PasteMainPage(driver);

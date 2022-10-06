@@ -25,7 +25,7 @@ public class GoogleCloudPricingCalcPage extends BasePage {
     private final By numberOfInstancesField = LocatorHelper.getLocatorFromOneValue(inputFieldBaseLocator, "Number of instances");
     private final By whatAreInstancesField = LocatorHelper.getLocatorFromOneValue(inputFieldBaseLocator, "What are these instances for?");
     private final String operatingSystemUnique = "listingCtrl.computeServer.os";
-    private final By operatingSystem =  LocatorHelper.getLocatorFromOneValue(selectFieldBaseLocator, operatingSystemUnique);
+    private final By operatingSystem = LocatorHelper.getLocatorFromOneValue(selectFieldBaseLocator, operatingSystemUnique);
     private final String provisioningModelUnique = "listingCtrl.computeServer.class";
     private final By provisioningModel = LocatorHelper.getLocatorFromOneValue(selectFieldBaseLocator, provisioningModelUnique);
     private final String seriesUnique = "listingCtrl.computeServer.series";
@@ -47,8 +47,8 @@ public class GoogleCloudPricingCalcPage extends BasePage {
     private final By commitedUsage = LocatorHelper.getLocatorFromOneValue(selectFieldBaseLocator, commitedUsageUnique);
     @FindBy(xpath = "//*[contains(@aria-label, 'Add to Estimate')]")
     private WebElement addToEstimateButton;
-    private By estimateSection = By.cssSelector(".cartitem");
-    private By estimateSectionRows = By.cssSelector(".md-1-line");
+    private final By estimateSection = By.cssSelector(".cartitem");
+    private final By estimateSectionRows = By.cssSelector(".md-1-line");
 
     public GoogleCloudPricingCalcPage(WebDriver driver) {
         super(driver);

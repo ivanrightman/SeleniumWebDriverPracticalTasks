@@ -11,15 +11,15 @@ import java.net.URL;
 
 public class ChromeDriverFactory implements IWebDriverFactory {
 
-  @Override
-  public WebDriver createWebDriver() {
-    WebDriverManager.chromedriver().setup();
-    return new ChromeDriver();
-  }
+    @Override
+    public WebDriver createWebDriver() {
+        WebDriverManager.chromedriver().setup();
+        return new ChromeDriver();
+    }
 
-  @Override
-  public RemoteWebDriver createRemoteWebDriver(String environment, ChromeOptions chromeOptions) throws MalformedURLException {
-    WebDriverManager.chromedriver().setup();
-    return new RemoteWebDriver(new URL(environment), chromeOptions);
-  }
+    @Override
+    public RemoteWebDriver createRemoteWebDriver(String environment, ChromeOptions chromeOptions) throws MalformedURLException {
+        WebDriverManager.chromedriver().setup();
+        return new RemoteWebDriver(new URL(environment), chromeOptions);
+    }
 }

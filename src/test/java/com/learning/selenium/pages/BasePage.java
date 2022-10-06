@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 
 public abstract class BasePage {
@@ -64,7 +65,7 @@ public abstract class BasePage {
     protected void fillInputField(By locator, String text) {
         Log.info(String.format("Filling field with locator %s with value %s", locator, text));
         click(locator);
-        if (text != null){
+        if (text != null) {
             String existingText = getElement(locator).getAttribute("value");
             if (!text.equals(existingText)) {
                 getElement(locator).clear();
@@ -77,7 +78,7 @@ public abstract class BasePage {
         Log.info(String.format("Filling field %s with value %s and sendKeys", one, text, keys));
         waitUntilElementClickable(one);
         one.click();
-        if (text != null){
+        if (text != null) {
             String existingText = one.getAttribute("value");
             if (!text.equals(existingText)) {
                 one.clear();

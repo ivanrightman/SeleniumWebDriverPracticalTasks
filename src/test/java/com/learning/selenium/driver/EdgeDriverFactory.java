@@ -8,14 +8,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 
 public class EdgeDriverFactory implements IWebDriverFactory {
-  @Override
-  public WebDriver createWebDriver() {
-    WebDriverManager.edgedriver().setup();
-    return new EdgeDriver();
-  }
+    @Override
+    public WebDriver createWebDriver() {
+        WebDriverManager.edgedriver().setup();
+        return new EdgeDriver();
+    }
 
-  @Override
-  public RemoteWebDriver createRemoteWebDriver(String environment, ChromeOptions chromeOptions) {
-    return null;
-  }
+    @Override
+    public RemoteWebDriver createRemoteWebDriver(String environment, ChromeOptions chromeOptions) {
+        return null;
+    }
 }

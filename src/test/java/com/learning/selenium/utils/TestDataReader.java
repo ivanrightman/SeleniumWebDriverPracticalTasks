@@ -7,18 +7,18 @@ import java.util.Properties;
 
 public class TestDataReader {
 
-  private static final Properties properties = new Properties();
+    private static final Properties properties = new Properties();
 
-  public static void readProperty(String fileName) {
-    try {
-      properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", fileName))));
-    } catch (IOException e) {
-      Log.error(String.format("Failed to read property %s", e.getLocalizedMessage()));
+    public static void readProperty(String fileName) {
+        try {
+            properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", fileName))));
+        } catch (IOException e) {
+            Log.error(String.format("Failed to read property %s", e.getLocalizedMessage()));
+        }
+        Log.info("Property read");
     }
-    Log.info("Property read");
-  }
 
-  public static String getFromProperty(String propertyName) {
-    return properties.getProperty(propertyName);
-  }
+    public static String getFromProperty(String propertyName) {
+        return properties.getProperty(propertyName);
+    }
 }
