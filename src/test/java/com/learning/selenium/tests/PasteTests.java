@@ -20,7 +20,7 @@ public class PasteTests extends BaseTest {
 
     @Test
     public void createNewPasteTest() {
-        Paste paste = PasteCreator.pasteFromProperty(envPropertyName);
+        Paste paste = PasteCreator.getPasteInstanceFromProperty(envPropertyName);
         app.pasteMainPage().open();
         app.pasteMainPage().fillNewPaste(paste.getCodeToPaste());
         app.pasteMainPage().selectSyntaxHighlighting(paste.getHighlighting());

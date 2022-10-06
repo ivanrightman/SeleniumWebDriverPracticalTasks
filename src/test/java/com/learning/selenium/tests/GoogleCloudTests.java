@@ -14,7 +14,7 @@ public class GoogleCloudTests extends BaseTest {
 
     @Test
     public void computeEngineTest() {
-        ComputeEngine computeEngine = ComputeEngineCreator.computeEngineFromProperty(envPropertyName);
+        ComputeEngine computeEngine = ComputeEngineCreator.getComputeEngineInstanceFromProperty(envPropertyName);
         String search = "Google Cloud Pricing Calculator";
         app.googleCloudMainPage().open();
         app.googleCloudHeader().search(search);
