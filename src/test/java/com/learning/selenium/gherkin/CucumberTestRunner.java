@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
     features = "classpath:features",
-    plugin = {"pretty", "html:target/cucumber-report"},
+    plugin = {"pretty", "html:report.html"},
     monochrome = true,
     glue = "com.learning.selenium"
     )
