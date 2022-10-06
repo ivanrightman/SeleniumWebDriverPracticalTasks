@@ -49,6 +49,10 @@ public class GoogleCloudPricingCalcPage extends BasePage {
     private WebElement addToEstimateButton;
     private By estimateSection = By.cssSelector(".cartitem");
     private By estimateSectionRows = By.cssSelector(".md-1-line");
+    private String pricingCalculatorOptionsInHeader = "//div[contains(@title, '%s')]";
+
+    @FindBy(css = "div[title='GKE Standard Node Pool (Kubernetes Engine)']")
+    private WebElement gkeStandard;
 
     public GoogleCloudPricingCalcPage(WebDriver driver) {
         super(driver);
@@ -93,5 +97,12 @@ public class GoogleCloudPricingCalcPage extends BasePage {
 
     public List<WebElement> getEstimateRows() {
         return getElementsByTwoSteps(estimateSection, estimateSectionRows);
+    }
+
+    public boolean isOptionInHeaderDisplayed(String option) {
+        waitUntilFrameAndSwitch(outerIframeLocator);
+        waitUntilFrameAndSwitch(innerIframeLocator);
+        WebElement element = getElement(LocatorHelper.getLocatorFromOneValue(pricingCalculatorOptionsInHeader, option));
+        return isElementDisplayed(element);
     }
 }

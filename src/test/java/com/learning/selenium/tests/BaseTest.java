@@ -83,7 +83,7 @@ public class BaseTest {
         return driver.getTitle();
     }
 
-    public Map<String, String> getKeyValuesFromWebElement(List<WebElement> webElements) {
+    public static Map<String, String> getKeyValuesFromWebElement(List<WebElement> webElements) {
         Map<String, String>  keyValues = new HashMap<>();
         for (WebElement el : webElements) {
             String[] value = el.getText().split(":");

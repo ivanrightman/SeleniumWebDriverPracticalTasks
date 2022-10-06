@@ -133,4 +133,8 @@ public abstract class BasePage {
         Log.info(String.format("Clicking on element using javascript %s", element));
         executeJavaScript("arguments[0].click()", element);
     }
+
+    public boolean isElementDisplayed(WebElement element) {
+        return element.isDisplayed();
+    }
 }
