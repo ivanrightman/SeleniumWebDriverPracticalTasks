@@ -33,6 +33,11 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>com.epam.reportportal</groupId>
+            <artifactId>logger-java-okhttp3</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
