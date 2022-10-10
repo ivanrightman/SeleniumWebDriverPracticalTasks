@@ -1,25 +1,26 @@
-<Configuration>
-
-    <Properties>
-        <Property name="basePath">./target/logs</Property>
-    </Properties>
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration packages="com.epam.ta.reportportal.log4j.appender" status="WARN">
     <Appenders>
-        <Console name="Console">
-            <PatternLayout>
-                <Pattern>%d %p %c{2} [%t] %l %m%n</Pattern>
-            </PatternLayout>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d [%t] %-5level %logger{36} - %msg%n%throwable"/>
         </Console>
-        <File name="File" fileName="${basePath}/app-${date:yyyy-MM-dd}.log"
-              filePattern="${basePath}/app-%d{yyyy-MM-dd}-%i.log" append="true" >
-            <PatternLayout>
-                <Pattern>%d %p %c{2} [%t] %m%n</Pattern>
-            </PatternLayout>
-        </File>
+        <ReportPortalLog4j2Appender name="ReportPortalAppender">
+            <PatternLayout
+                    pattern="%d [%t] %-5level %logger{36} - %msg%n%throwable"/>
+        </ReportPortalLog4j2Appender>
     </Appenders>
     <Loggers>
-        <Root level="trace">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="File"/>
+        <Root level="INFO">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="ReportPortalAppender"/>
         </Root>
+        <Logger name="com.epam.reportportal" level="INFO" additivity="false">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="ReportPortalAppender"/>
+        </Logger>
+        <Logger name="binary_data_logger" level="DEBUG" additivity="false">
+            <AppenderRef ref="ReportPortalAppender"/>
+        </Logger>
     </Loggers>
 </Configuration>
